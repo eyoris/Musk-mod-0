@@ -1,34 +1,45 @@
-//Función que invierta el orden de una palabra usando una pila (stack)
+// Función que invierte el orden de las palabras usando una pila (stack)
 
-//Asking the user for two words
+// Asking the user for multiple words
 const readLine = require("readline-sync");
+const input = readLine.question("Please, enter words separated by spaces: ");
 
-const word = readLine.question("Please, you enter a word: ");
-
-//We create a function for we can inverted a word using a stack
+// We create a function to invert a word using a stack
 function invertedWord(word) {
-    //We defined a const like a stack
+    // We define a const like a stack
     const stack = [];
 
-    //Now, we need to add each character of word to a stack.
+    // Now, we need to add each character of the word to the stack.
     for (const char of word) {
         stack.push(char);
     }
-    
-    //We create a variable to store the characters of the inverse word
+
+    // We create a variable to store the characters of the inverted word
     let reverseWord = "";
 
-    //We iterate over each character in our stack and add it to our variable
-    for (let i = 0; stack.length > 0; i++){
+    // We iterate over each character in our stack and add it to our variable
+    while (stack.length > 0) {
         reverseWord += stack.pop();
     }
 
-return reverseWord
+    return reverseWord;
 }
 
-//Calling the funtcion
-const reverseWord = invertedWord(word);
+// Split the input into an array of words
+const wordsArray = input.split(" ");
 
-//Print the result
-console.log(`The inverted word is: ${reverseWord}`);
+// Create an array to hold the inverted words
+const reversedWordsArray = [];
+
+// Iterate over each word and invert it
+for (const word of wordsArray) {
+    const reversedWord = invertedWord(word);
+    reversedWordsArray.push(reversedWord);
+}
+
+// Join the reversed words into a single string
+const result = reversedWordsArray.join(" ");
+
+// Print the result
+console.log(`The inverted words are: ${result}`);
 
